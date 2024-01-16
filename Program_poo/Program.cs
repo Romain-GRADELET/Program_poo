@@ -22,7 +22,6 @@ namespace program_poo
             nombreDePersonne++;
 
             this.numeroPersonne = nombreDePersonne;
-
         }
 
         public void Afficher()
