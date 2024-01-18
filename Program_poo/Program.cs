@@ -5,14 +5,19 @@ namespace program_poo
 {
     class Personne
     {
-        public static int nombreDePersonne = 0;
+        static int nombreDePersonne = 0;
 
-        public string nom;
+        string nom;
         int age;
         string emploi;
         int numeroPersonne;
 
-        public Personne(string nom_param, int age_param, string emploi_param)
+
+       /* public Personne(string nom_param, int age_param) : this(nom_param, age_param, "(non spécifié)")
+        {
+
+        }*/
+        public Personne(string nom_param, int age_param, string emploi_param = null)
         {
 
             this.nom = nom_param;
@@ -29,8 +34,22 @@ namespace program_poo
             Console.WriteLine("N° : " + numeroPersonne);
             Console.WriteLine("NOM : " + nom);
             Console.WriteLine(" AGE : " + age + " ans");
-            Console.WriteLine(" EMPLOI : " + emploi);
+
+            if (emploi != null)
+            {
+                Console.WriteLine(" EMPLOI : " + emploi);
+            }
+            else
+            {
+            Console.WriteLine(" Aucun emploi spécifié");
+            }
             Console.WriteLine();
+        }
+
+        public static void AfficherNombreDePersonne()
+        {
+            Console.WriteLine("Nombre total de personne : " + nombreDePersonne);
+
         }
     }
 
@@ -54,7 +73,9 @@ namespace program_poo
             //Personne personne2 = new Personne("Jacques", 35, "Professeur");
             //personne2.Afficher();
 
-            var personnes = new List<Personne>()
+            //---------------------------------------------------------------
+
+            /*var personnes = new List<Personne>()
             {
                 new Personne("Paul", 30, "Développeur"),
                 new Personne("Jacques", 35, "Professeur"),
@@ -67,9 +88,13 @@ namespace program_poo
             foreach (var personne in personnes)
             {
                 personne.Afficher();
-            }
+                Personne.AfficherNombreDePersonne();
+            }*/
 
-            Console.WriteLine("Nombre total de personne : " + Personne.nombreDePersonne);
+            var personne1 = new Personne("Paul", 30, "Développeur");
+            personne1.Afficher();
+
+            
         }
     }
 }
