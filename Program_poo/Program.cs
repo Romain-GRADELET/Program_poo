@@ -8,8 +8,25 @@ namespace program_poo
         static int nombreDePersonne = 0;
 
         public string nom { get; init; }
-        public int age { get; set; }
-        public string emploi { get; set; }
+
+        int _age;
+        public int age {
+            get
+            {
+                //Console.WriteLine("Je suis dans le get de age");
+                return _age;
+            } 
+            set 
+            {
+                //Console.WriteLine("Je suis dans le set de age");
+                if (value >= 0)
+                {
+                    _age = value;
+                }
+                
+            } 
+        }
+        public string emploi { get; init; }
 
         int numeroPersonne;
 
@@ -30,6 +47,7 @@ namespace program_poo
             this.numeroPersonne = nombreDePersonne;
         }
 
+        // :this() permet d'exécuter le premier constructeur l44
         public Personne(string nom_param, int age_param, string emploi_param = null) : this()
         {
 
@@ -103,10 +121,14 @@ namespace program_poo
             }*/
 
             var personne1 = new Personne { nom = "Paul", age = 20, emploi = "ingénieur" };
-            
-            personne1.nom = "toto";
+            var personne2 = new Personne { nom = "Jacques", age = 35};
+
+            //personne1.nom = "toto";
+
+            personne1.age = 5;
 
             personne1.Afficher();
+            personne2.Afficher();
 
 
         }
