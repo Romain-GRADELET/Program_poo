@@ -7,26 +7,37 @@ namespace program_poo
     {
         static int nombreDePersonne = 0;
 
-        string nom;
-        int age;
-        string emploi;
+        public string nom { get; init; }
+        public int age { get; set; }
+        public string emploi { get; set; }
+
         int numeroPersonne;
 
 
-       /* public Personne(string nom_param, int age_param) : this(nom_param, age_param, "(non spécifié)")
+       /*public string GetNom()
         {
+            return nom;
+        }
 
+        public string SetNom(string value)
+        {
+            return nom = value;
         }*/
-        public Personne(string nom_param, int age_param, string emploi_param = null)
+
+        public Personne()
+        {
+            nombreDePersonne++;
+            this.numeroPersonne = nombreDePersonne;
+        }
+
+        public Personne(string nom_param, int age_param, string emploi_param = null) : this()
         {
 
             this.nom = nom_param;
             this.age = age_param;
             this.emploi = emploi_param;
 
-            nombreDePersonne++;
-
-            this.numeroPersonne = nombreDePersonne;
+           
         }
 
         public void Afficher()
@@ -91,10 +102,13 @@ namespace program_poo
                 Personne.AfficherNombreDePersonne();
             }*/
 
-            var personne1 = new Personne("Paul", 30, "Développeur");
+            var personne1 = new Personne { nom = "Paul", age = 20, emploi = "ingénieur" };
+            
+            personne1.nom = "toto";
+
             personne1.Afficher();
 
-            
+
         }
     }
 }
