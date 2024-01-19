@@ -3,9 +3,25 @@ using System.Linq;
 
 namespace program_poo
 {
+    class Enfant : Etudiant
+    {
+        string classeEcole;
+
+        public Enfant(string nom_param, int age_param, string classeEcole) : base(nom_param, age_param, null)
+        {
+            this.classeEcole = classeEcole;
+        }
+        public override void Afficher()
+        {
+            AfficherNomEtAge();
+            Console.WriteLine(" Enfant en classe de " + classeEcole);
+            AfficherProfesseurPrincipal();
+        }
+    }
+
     class Etudiant : Personne
     {
-        string infoEtude;
+        protected string infoEtude;
         public Personne professeurPrincipal { get; init; }
 
         public Etudiant(string nom_param, int age_param, string infoEtude_param) : base(nom_param, age_param, "Etudiant")
@@ -16,6 +32,11 @@ namespace program_poo
         {
             AfficherNomEtAge();
             Console.WriteLine(" Etudiant en " + infoEtude);
+            AfficherProfesseurPrincipal();
+        }
+
+        protected void AfficherProfesseurPrincipal()
+        {
             if (professeurPrincipal != null)
             {
                 Console.WriteLine(" Le professeur principal est : ");
@@ -26,6 +47,7 @@ namespace program_poo
                 Console.WriteLine(" Aucun professeur principal spécifié");
             }
         }
+
     }
 
     class Personne
@@ -119,6 +141,11 @@ namespace program_poo
 
             var etudiant = new Etudiant("David", 20, "école d'ingénieur informatique") { professeurPrincipal = new Personne("Paul", 35, "Professeur") };
             etudiant.Afficher();
+
+            Console.WriteLine();
+
+            var enfant = new Enfant("Sophie", 8, "CP") { professeurPrincipal = new Personne("Jean", 35, "Professeur des écoles") };
+            enfant.Afficher();
 
         }
     }
