@@ -167,7 +167,7 @@ namespace program_poo
             //var table = new TableMultiplication(2);
             //table.Afficher();
 
-            //------------------------------------------------------------------------
+            //**************************************************************************
 
             //var personne1 = new Personne { nom = "Paul", age = 20, emploi = "ingénieur" };
             //var personne2 = new Personne { nom = "Jacques", age = 35};
