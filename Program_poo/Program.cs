@@ -6,10 +6,25 @@ namespace program_poo
     class Etudiant : Personne
     {
         string infoEtude;
-        
-        public Etudiant(string nom_param, int age_param) : base(nom_param, age_param, "Etudiant")
+        public Personne professeurPrincipal { get; init; }
+
+        public Etudiant(string nom_param, int age_param, string infoEtude_param) : base(nom_param, age_param, "Etudiant")
         {
-        
+            this.infoEtude = infoEtude_param;
+        }
+        public override void Afficher()
+        {
+            AfficherNomEtAge();
+            Console.WriteLine(" Etudiant en " + infoEtude);
+            if (professeurPrincipal != null)
+            {
+                Console.WriteLine(" Le professeur principal est : ");
+                professeurPrincipal.Afficher();
+            }
+            else
+            {
+                Console.WriteLine(" Aucun professeur principal spécifié");
+            }
         }
     }
 
@@ -17,10 +32,10 @@ namespace program_poo
     {
         static int nombreDePersonne = 0;
 
-        string nom;
-        int age;
-        string emploi;
-        int numeroPersonne;
+        protected string nom;
+        protected int age;
+        protected string emploi;
+        protected int numeroPersonne;
 
         public Personne(string nom_param, int age_param, string emploi_param = null)
         {
@@ -32,11 +47,9 @@ namespace program_poo
             this.numeroPersonne = nombreDePersonne;
         }
 
-        public void Afficher()
+        public virtual void Afficher()
         {
-            Console.WriteLine("N° : " + numeroPersonne);
-            Console.WriteLine("NOM : " + nom);
-            Console.WriteLine(" AGE : " + age + " ans");
+            AfficherNomEtAge();
 
             if (emploi != null)
             {
@@ -49,13 +62,18 @@ namespace program_poo
             Console.WriteLine();
         }
 
+        protected void AfficherNomEtAge()
+        {
+            Console.WriteLine("N° : " + numeroPersonne);
+            Console.WriteLine("NOM : " + nom);
+            Console.WriteLine(" AGE : " + age + " ans");
+        }
+
         public static void AfficherNombreDePersonne()
         {
             Console.WriteLine("Nombre total de personne : " + nombreDePersonne);
-
         }
     }
-
 
     class Program
     {
@@ -97,7 +115,9 @@ namespace program_poo
             //var personne1 = new Personne { nom = "Paul", age = 20, emploi = "ingénieur" };
             //var personne2 = new Personne { nom = "Jacques", age = 35};
 
-            var etudiant = new Etudiant("David", 20);
+            //var personne1 = new Personne("Paul", 35, "Professeur");
+
+            var etudiant = new Etudiant("David", 20, "école d'ingénieur informatique") { professeurPrincipal = new Personne("Paul", 35, "Professeur") };
             etudiant.Afficher();
 
         }
